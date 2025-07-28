@@ -13,7 +13,7 @@ const typeMap = {
 
 type InteractionType = keyof typeof typeMap;
 
-async function generateMockedInteractionRecords(type?: InteractionType): Promise<IInteractionRecords> {
+function generateMockedInteractionRecords(type?: InteractionType): IInteractionRecords {
 	let chosenType: InteractionType;
 	if (type) {
 		chosenType = type;
