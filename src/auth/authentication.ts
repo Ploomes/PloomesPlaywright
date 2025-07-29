@@ -34,16 +34,16 @@ class Authentication {
 	async login({ email, password }: ILogin) {
 		let listKeys = this.isPartners ? partnersKeyList : userKeyList;
 		if (listKeys[email]) {
-            const testUrl = `${this.baseUrl}/Self`;
-            const response = await fetch(testUrl, {
-                headers: { "user-Key": listKeys[email] },
-            });
-            if (response.status === 200) {
-                return listKeys[email];
-            }
-            delete listKeys[email];
-            await updateJsonFile(this.listKeyPath, listKeys);
-        };
+			const testUrl = `${this.baseUrl}/Self`;
+			const response = await fetch(testUrl, {
+				headers: { "user-Key": listKeys[email] },
+			});
+			if (response.status === 200) {
+				return listKeys[email];
+			}
+			delete listKeys[email];
+			await updateJsonFile(this.listKeyPath, listKeys);
+		}
 
 		const url = `${this.baseUrl}/Self/Login?\$select=UserKey`;
 		const response = await fetch(url, {
