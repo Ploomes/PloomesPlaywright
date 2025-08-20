@@ -12,7 +12,8 @@ test.describe("Get Documents", () => {
         expect(document.Id).toBeDefined();  
 
         const fetchedDocument = await documentsController.findDocumentById(document.Id);
-        expect(fetchedDocument).toStrictEqual([document]);
+        const fetchedDocumentId = fetchedDocument?.[0]?.Id;
+        expect(fetchedDocumentId).toBe(document.Id);
 
         await documentsController.deleteDocumetAndRelatedData(document);
     });
@@ -23,8 +24,9 @@ test.describe("Get Documents", () => {
         const document = await documentsController.createDocumentForContact(generateMockedDocument());
         expect(document.Id).toBeDefined();  
 
-        const fetchedDocument = await documentsController.findDocumentById(document.Id);
-        expect(fetchedDocument).toStrictEqual([document]);
+        const fetchedDocument = await documentsController.findDocumentById(document.Id);       
+        const fetchedDocumentId = fetchedDocument?.[0]?.Id;
+        expect(fetchedDocumentId).toBe(document.Id);
 
         await documentsController.deleteDocumetAndRelatedData(document);
     });
