@@ -1,6 +1,7 @@
 import { ContactSchema, type IContact } from "./IContact";
 import { DealSchema, type IDeals } from "./IDeals";
 import { DealsPipelinesSchema, type IDealssPipelines } from "./IDealsPipelines";
+import { DocumentSchema, type IDocuments } from "./IDocument";
 import { DocumentTemplateSchema, type IDocumentTemplates } from "./IDocumentTemplates";
 import { type IInteractionRecords, InteractionRecordSchema } from "./IInteractionRecords";
 import { type IProducts, ProductsSchema } from "./IProducts";
@@ -13,6 +14,7 @@ import { type IUsers, usersSchema } from "./IUsers";
 export {
 	ContactSchema,
 	DealSchema,
+	DocumentSchema,
 	ProductsFamiliesSchema,
 	ProductsGroupsSchema,
 	ProductsSchema,
@@ -27,6 +29,7 @@ export {
 export type {
 	IContact,
 	IDeals,
+	IDocuments,
 	IProductsFamilies,
 	IProductsGroups,
 	IProducts,

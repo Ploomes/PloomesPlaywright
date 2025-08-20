@@ -58,58 +58,58 @@ class DealsController {
 		return response;
 	}
 
-async createDealAtStage(stageId: number, data: IDeals) {
-    const dealsService = new DealsService(this.user);
-    const contactsController = new ContactController(this.user);
+	async createDealAtStage(stageId: number, data: IDeals) {
+		const dealsService = new DealsService(this.user);
+		const contactsController = new ContactController(this.user);
 
-    const contactData = generateMockedContact("company");
-    const contact = await contactsController.createContact(contactData);
-    const contactId = contact.Id;
+		const contactData = generateMockedContact("company");
+		const contact = await contactsController.createContact(contactData);
+		const contactId = contact.Id;
 
-    const dataWithStage = {
-        ...data,
-        StageId: stageId,
-        ContactId: contactId,
-    };
+		const dataWithStage = {
+			...data,
+			StageId: stageId,
+			ContactId: contactId,
+		};
 
-    const response = await dealsService.createDeal(dataWithStage);
+		const response = await dealsService.createDeal(dataWithStage);
 
-    dealMetadataMap.set(response.Id, {
-        PipelineId: 0,
-        ContactId: contactId,
-    });
+		dealMetadataMap.set(response.Id, {
+			PipelineId: 0,
+			ContactId: contactId,
+		});
 
-    return response;
-}
+		return response;
+	}
 
-async createDealAtPipeline(pipelineId: number, data: IDeals) {
-    const dealsService = new DealsService(this.user);
-    const dealsPipelinesController = new DealsPipelinesController(this.user);
-    const contactsController = new ContactController(this.user);
+	async createDealAtPipeline(pipelineId: number, data: IDeals) {
+		const dealsService = new DealsService(this.user);
+		const dealsPipelinesController = new DealsPipelinesController(this.user);
+		const contactsController = new ContactController(this.user);
 
-    const contactData = generateMockedContact("company");
-    const contact = await contactsController.createContact(contactData);
-    const contactId = contact.Id;
+		const contactData = generateMockedContact("company");
+		const contact = await contactsController.createContact(contactData);
+		const contactId = contact.Id;
 
-    const stages = await dealsPipelinesController.findStagesFromPipeline(pipelineId);
+		const stages = await dealsPipelinesController.findStagesFromPipeline(pipelineId);
 
-    const randomStageId = stages[Math.floor(Math.random() * stages.length)].Id;
+		const randomStageId = stages[Math.floor(Math.random() * stages.length)].Id;
 
-    const dataWithStage = {
-        ...data,
-        StageId: randomStageId,
-        ContactId: contactId,
-    };
+		const dataWithStage = {
+			...data,
+			StageId: randomStageId,
+			ContactId: contactId,
+		};
 
-    const response = await dealsService.createDeal(dataWithStage);
+		const response = await dealsService.createDeal(dataWithStage);
 
-    dealMetadataMap.set(response.Id, {
-        PipelineId: pipelineId,
-        ContactId: contactId,
-    });
+		dealMetadataMap.set(response.Id, {
+			PipelineId: pipelineId,
+			ContactId: contactId,
+		});
 
-    return response;
-}
+		return response;
+	}
 
 	async updateDeal(deal: IDeals, data: Partial<IDeals>) {
 		const dealsService = new DealsService(this.user);
@@ -117,39 +117,39 @@ async createDealAtPipeline(pipelineId: number, data: IDeals) {
 		return response;
 	}
 
-async deleteDealAndPipeline(deal: IDeals) {
-    const dealsService = new DealsService(this.user);
+	async deleteDealAndPipeline(deal: IDeals) {
+		const dealsService = new DealsService(this.user);
 
-    const dealId = deal.Id;
-    let metadata = dealMetadataMap.get(dealId);
+		const dealId = deal.Id;
+		let metadata = dealMetadataMap.get(dealId);
 
-    if (!metadata) {
-        const getDeal = await dealsService.findDealById(dealId);
-        const fetchedDeal = getDeal[0];
-        if (fetchedDeal) {
-            metadata = {
-                PipelineId: fetchedDeal.PipelineId ?? 0,
-                ContactId: fetchedDeal.ContactId ?? 0,
-            };
-        }
-    }
+		if (!metadata) {
+			const getDeal = await dealsService.findDealById(dealId);
+			const fetchedDeal = getDeal[0];
+			if (fetchedDeal) {
+				metadata = {
+					PipelineId: fetchedDeal.PipelineId ?? 0,
+					ContactId: fetchedDeal.ContactId ?? 0,
+				};
+			}
+		}
 
-    const response = await dealsService.deleteDeal(deal);
+		const response = await dealsService.deleteDeal(deal);
 
-    if (metadata?.PipelineId) {
-        const dealsPipelinesController = new DealsPipelinesController(this.user);
-        await dealsPipelinesController.deleteDealsPipeline({ Id: metadata.PipelineId });
-    }
+		if (metadata?.PipelineId) {
+			const dealsPipelinesController = new DealsPipelinesController(this.user);
+			await dealsPipelinesController.deleteDealsPipeline({ Id: metadata.PipelineId });
+		}
 
-    if (metadata?.ContactId) {
-        const contactController = new ContactController(this.user);
-        await contactController.deleteContact({ Id: metadata.ContactId });
-    }
+		if (metadata?.ContactId) {
+			const contactController = new ContactController(this.user);
+			await contactController.deleteContact({ Id: metadata.ContactId });
+		}
 
-    dealMetadataMap.delete(dealId);
+		dealMetadataMap.delete(dealId);
 
-    return response;
-}
+		return response;
+	}
 
 	async deleteDeal(deal: IDeals) {
 		const dealsService = new DealsService(this.user);

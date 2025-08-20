@@ -12,7 +12,7 @@ const DocumentTemplateSchema = zod.object({
 	Default: zod.boolean().optional(),
 });
 
-type IDocumentTemplates = zod.infer<typeof DocumentTemplateSchema>;
+typeIDocumentTemplates = zod.infer<typeof DocumentTemplateSchema>;
 
 export { DocumentTemplateSchema };
 
