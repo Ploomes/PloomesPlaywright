@@ -84,7 +84,7 @@ class DocumentsController {
 		return response;
 	}
 
-	async deleteDocumetAndRelatedData(document: IDocuments) {
+	async deleteDocumentAndRelatedData(document: IDocuments) {
 		const documentsService = new DocumentsService(this.user);
 		const documentTemplatesController = new DocumentTemplatesController(this.user);
 
@@ -111,7 +111,7 @@ class DocumentsController {
 			await new ContactController(this.user).deleteContact({ Id: metaData.ContactId });
 		}
 		if (metaData?.DealId) {
-			await new DealsController(this.user).deleteDeal({ Id: metaData.DealId });
+			await new DealsController(this.user).deleteDealAndPipeline({ Id: metaData.DealId });
 		}
 		
 		return response;

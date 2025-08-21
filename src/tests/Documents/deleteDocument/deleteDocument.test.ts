@@ -12,7 +12,7 @@ test.describe("Delete a Document", () => {
 		expect(document.Id).toBeDefined();
 		expect(document.Name).toBe(documentData.Name);
 
-		await documentController.deleteDocumetAndRelatedData(document);
+		await documentController.deleteDocumentAndRelatedData(document);
         const deletedDocument = await documentController.findDocumentById(document.Id);
         expect(deletedDocument).toStrictEqual([]);
 	});
@@ -26,7 +26,7 @@ test.describe("Delete a Document", () => {
 		expect(document.Id).toBeDefined();
 		expect(document.Name).toBe(documentData.Name);
 
-		await documentController.deleteDocumetAndRelatedData(document);
+		await documentController.deleteDocumentAndRelatedData(document);
         const deletedDocument = await documentController.findDocumentById(document.Id);
         expect(deletedDocument).toStrictEqual([]);
 	});

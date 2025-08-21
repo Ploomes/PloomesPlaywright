@@ -12,7 +12,7 @@ test.describe("Create a Document", () => {
 		expect(document.Id).toBeDefined();
 		expect(document.Name).toBe(documentData.Name);
 
-		await documentController.deleteDocumetAndRelatedData(document);
+		await documentController.deleteDocumentAndRelatedData(document);
 	});
 
 	test("Create a Client Document Correctly", async () => {
@@ -24,6 +24,6 @@ test.describe("Create a Document", () => {
 		expect(document.Id).toBeDefined();
 		expect(document.Name).toBe(documentData.Name);
 
-		await documentController.deleteDocumetAndRelatedData(document);
+		await documentController.deleteDocumentAndRelatedData(document);
 	});
 });

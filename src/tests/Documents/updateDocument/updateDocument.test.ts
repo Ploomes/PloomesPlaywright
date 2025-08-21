@@ -15,7 +15,7 @@ test.describe("Create a Document", () => {
 		const updatedDocument = await documentController.updateDocument(document, updateDocument);
 		expect(updatedDocument.Name).toBe(updateDocument.Name);
 
-		await documentController.deleteDocumetAndRelatedData(document);
+		await documentController.deleteDocumentAndRelatedData(document);
 	});
 
 	test("Create a Client Document Correctly", async () => {
@@ -30,6 +30,6 @@ test.describe("Create a Document", () => {
 		const updatedDocument = await documentController.updateDocument(document, updateDocument);
 		expect(updatedDocument.Name).toBe(updateDocument.Name);
 
-		await documentController.deleteDocumetAndRelatedData(document);
+		await documentController.deleteDocumentAndRelatedData(document);
 	});
 });

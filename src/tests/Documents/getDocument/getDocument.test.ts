@@ -15,7 +15,7 @@ test.describe("Get Documents", () => {
         const fetchedDocumentId = fetchedDocument?.[0]?.Id;
         expect(fetchedDocumentId).toBe(document.Id);
 
-        await documentsController.deleteDocumetAndRelatedData(document);
+        await documentsController.deleteDocumentAndRelatedData(document);
     });
 
     test("Get Client Document Correctly", async () => {
@@ -28,7 +28,7 @@ test.describe("Get Documents", () => {
         const fetchedDocumentId = fetchedDocument?.[0]?.Id;
         expect(fetchedDocumentId).toBe(document.Id);
 
-        await documentsController.deleteDocumetAndRelatedData(document);
+        await documentsController.deleteDocumentAndRelatedData(document);
     });
 
     test("Get all Documents", async () => {
@@ -53,8 +53,8 @@ test.describe("Get Documents", () => {
         expect(fetchedDocuments).toMatchArrayId<IDocuments>(dealDocuments);
         expect(fetchedDocuments).toMatchArrayId<IDocuments>(contactDocuments);
 
-        await deleteMultipleItens<IDocuments>(documentsController.deleteDocumetAndRelatedData.bind(documentsController), dealDocuments);
+        await deleteMultipleItens<IDocuments>(documentsController.deleteDocumentAndRelatedData.bind(documentsController), dealDocuments);
 
-        await deleteMultipleItens<IDocuments>(documentsController.deleteDocumetAndRelatedData.bind(documentsController), contactDocuments);
+        await deleteMultipleItens<IDocuments>(documentsController.deleteDocumentAndRelatedData.bind(documentsController), contactDocuments);
     }); 
 });
