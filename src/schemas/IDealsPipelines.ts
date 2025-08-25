@@ -13,7 +13,7 @@ const DealsPipelinesSchema = z.object({
 	LoseVerbId: z.number(),
 	MayCreateDocuments: z.boolean(),
 	MayCreateOrders: z.boolean(),
-	MayCreateQuotes: z.boolean(),
+	MaycreateQuoteWithDeals: z.boolean(),
 	MayLoseDeals: z.boolean(),
 	MayWinDeals: z.boolean(),
 	MustPassAllStages: z.boolean(),
