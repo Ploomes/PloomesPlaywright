@@ -3,6 +3,7 @@ import { DealSchema, type IDeals } from "./IDeals";
 import { DealsPipelinesSchema, type IDealssPipelines } from "./IDealsPipelines";
 import { DocumentSchema, type IDocuments } from "./IDocument";
 import { DocumentTemplateSchema, type IDocumentTemplates } from "./IDocumentTemplates";
+import { QuoteSchema, type IQuotes } from "./IQuotes";
 import { type IInteractionRecords, InteractionRecordSchema } from "./IInteractionRecords";
 import { type IProducts, ProductsSchema } from "./IProducts";
 import { type IProductsFamilies, ProductsFamiliesSchema } from "./IProductsFamilies";
@@ -24,6 +25,7 @@ export {
 	DealsPipelinesSchema,
 	StageSchema,
 	InteractionRecordSchema,
+	QuoteSchema,
 };
 
 export type {
@@ -39,4 +41,5 @@ export type {
 	IDealssPipelines,
 	IStage,
 	IInteractionRecords,
+	IQuotes,
 };
