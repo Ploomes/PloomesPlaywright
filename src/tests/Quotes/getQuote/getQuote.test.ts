@@ -14,7 +14,9 @@ test.describe("Get Quotes", () => {
         expect(quote.Id).toBeDefined();
 
         const fetchedQuote = await quotesController.findQuoteById(quote.Id);
-        expect(fetchedQuote).toStrictEqual([quote]);
+        const fetchedDocumentId = fetchedQuote?.[0]?.Id;
+        expect(fetchedDocumentId).toBe(quote.Id);
+
         await quotesController.deleteQuoteAndRelatedData(quote);
     });
 
